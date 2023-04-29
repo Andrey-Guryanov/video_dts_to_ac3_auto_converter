@@ -17,7 +17,9 @@ def run_scan_files(dir_path: Path, ffmpeg_console: FFMPEGСonsole) -> None:
             if check_video(file_path):
                 if check_free_file(file_path):
                     file_hash = create_path_hash(file_path)
-                    if file_name[-4:] == ".mkv" and check_convert(file_path, ffmpeg_console):
+                    if file_name[-4:] == ".mkv" and check_convert(
+                        file_path, ffmpeg_console
+                    ):
                         convert_status = False
                     else:
                         convert_status = True

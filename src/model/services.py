@@ -36,7 +36,9 @@ class DB_Services(object):
     def get_no_copy(limit_count: int = 10) -> Optional[List]:
         query = (
             FileHistory.select()
-            .where((FileHistory.copy_status == False) & (FileHistory.convert_status == True))
+            .where(
+                (FileHistory.copy_status == False) & (FileHistory.convert_status == True)
+            )
             .limit(10)
         )
         result = [value for value in query]

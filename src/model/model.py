@@ -1,5 +1,12 @@
 import os
-from peewee import Model, SqliteDatabase, PrimaryKeyField, CharField, BooleanField, DateTimeField
+from peewee import (
+    Model,
+    SqliteDatabase,
+    PrimaryKeyField,
+    CharField,
+    BooleanField,
+    DateTimeField,
+)
 from src.settings import DB_CACHE_NAME, DB_CACHE_DIR
 
 if not os.path.exists(DB_CACHE_DIR):
