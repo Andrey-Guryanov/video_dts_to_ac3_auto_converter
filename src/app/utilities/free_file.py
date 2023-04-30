@@ -1,5 +1,6 @@
+import os
 from pathlib import Path
-
+from datetime import datetime
 
 def check_free_file(file_path: Path):
     if not file_path.exists():
@@ -9,4 +10,9 @@ def check_free_file(file_path: Path):
     except PermissionError:
         return False
     else:
-        return True
+        file_stat = os.stat(file_path)
+        datetime_now = datetime.now()
+        datetime_modified = datetime.fromtimestamp(file_stat.st_mtime)
+        if (datetime_now - datetime_modified).seconds > 3:
+            return True
+    return False

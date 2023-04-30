@@ -30,7 +30,6 @@ class FileHistory(BaseModel):
     conver_ddt = DateTimeField(default=None, null=True)
     copy_status = BooleanField(default=False, null=False)
     file_size = IntegerField(null=False)
-    file_status = BooleanField(default=False, null=False)
 
     class Meta:
         database = db
