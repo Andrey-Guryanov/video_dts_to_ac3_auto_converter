@@ -14,13 +14,19 @@ class DB_Services(object):
         self._del_all_rows()
 
     def add_file(
-        self, file_hash: str, file_name: str, file_path: Path, convert_status: bool
+        self,
+        file_hash: str,
+        file_name: str,
+        file_path: Path,
+        convert_status: bool,
+        file_size,
     ) -> None:
         new_file = FileHistory(
             file_hash=file_hash,
             file_name=file_name,
             file_path=str(file_path),
             convert_status=convert_status,
+            file_size=file_size,
         )
         self._save_db(new_file)
 

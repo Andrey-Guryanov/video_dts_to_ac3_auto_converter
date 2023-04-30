@@ -28,6 +28,7 @@ def run_scan_files(dir_path: Path, ffmpeg_console: FFMPEGСonsole) -> None:
                         file_name=file_name,
                         file_path=file_path,
                         convert_status=convert_status,
+                        file_size=os.path.getsize(file_path),
                     )
 
 

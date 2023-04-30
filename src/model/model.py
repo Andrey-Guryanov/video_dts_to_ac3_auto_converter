@@ -6,6 +6,7 @@ from peewee import (
     CharField,
     BooleanField,
     DateTimeField,
+    IntegerField,
 )
 from src.settings import DB_CACHE_NAME, DB_CACHE_DIR
 
@@ -28,6 +29,8 @@ class FileHistory(BaseModel):
     convert_status = BooleanField(default=False, null=False)
     conver_ddt = DateTimeField(default=None, null=True)
     copy_status = BooleanField(default=False, null=False)
+    file_size = IntegerField(null=False)
+    file_status = BooleanField(default=False, null=False)
 
     class Meta:
         database = db
