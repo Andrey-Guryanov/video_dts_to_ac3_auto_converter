@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from datetime import datetime
 
+
 def check_free_file(file_path: Path):
     if not file_path.exists():
         raise FileNotFoundError

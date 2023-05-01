@@ -10,7 +10,7 @@ def crete_dir_structure(path_scann: Path, path_file: Path, path_save: Path):
         count_dir = repeat
         for _ in range(repeat):
             count_dir -= 1
-            dir_name = path_file.parents[count_dir].stem
+            dir_name = path_file.parents[count_dir].name
             check_path = check_path / dir_name
             if not os.path.isdir(check_path):
                 os.makedirs(check_path)
