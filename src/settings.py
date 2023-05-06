@@ -19,4 +19,4 @@ else:
     SAVE_STRUCT = None
     COPY_ALL = None
 
-DEMON_INTERVAL: Final[int] = 10
+DEMON_INTERVAL: Final[int] = 60

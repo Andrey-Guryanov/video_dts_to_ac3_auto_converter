@@ -14,6 +14,6 @@ def check_free_file(file_path: Path):
         file_stat = os.stat(file_path)
         datetime_now = datetime.now()
         datetime_modified = datetime.fromtimestamp(file_stat.st_mtime)
-        if (datetime_now - datetime_modified).seconds > 3:
+        if (datetime_now - datetime_modified).seconds > 10:
             return True
     return False
