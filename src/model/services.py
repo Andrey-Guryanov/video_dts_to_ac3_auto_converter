@@ -2,6 +2,7 @@ from typing import Optional, List
 from peewee import IntegrityError
 from pathlib import Path
 
+from src.app.utilities.log import logger
 from .model import db, FileHistory, BaseModel
 
 
@@ -28,7 +29,8 @@ class DB_Services(object):
             convert_status=convert_status,
             file_size=file_size,
         )
-        self._save_db(new_file)
+        if self._save_db(new_file):
+            logger.info("Add new file = {}", file_path)
 
     @staticmethod
     def get_no_convert(limit_count: int = 10) -> Optional[List]:
@@ -63,8 +65,9 @@ class DB_Services(object):
     def _save_db(new_row: BaseModel) -> None:
         try:
             new_row.save()
+            return True
         except IntegrityError:
-            pass
+            return False
 
     @staticmethod
     def _del_all_rows():

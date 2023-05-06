@@ -163,3 +163,5 @@ config.yaml
 *.db
 setup.cfg
 pyproject.toml
+log/
+STOP

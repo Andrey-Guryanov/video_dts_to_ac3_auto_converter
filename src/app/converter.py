@@ -2,12 +2,14 @@ import os
 from pathlib import Path
 from datetime import datetime
 from src.model import DB_MANAGER
+from src.app.utilities.log import logger
 from src.app.ffmpeg_control import FFMPEGСonsole
 from src.app.utilities.dir_path import crete_dir_structure
 from src.settings import SAVE_STRUCT, SCANN_PATH, SAVE_PATH
 
 
 def run_convert_cache_db(save_path_dir: Path, ffmpeg_console: FFMPEGСonsole):
+    logger.debug("Run convert new files")
     while True:
         file_replace = False
         new_files = DB_MANAGER.get_no_convert()
@@ -31,8 +33,10 @@ def run_convert_cache_db(save_path_dir: Path, ffmpeg_console: FFMPEGСonsole):
                 new_file.conver_ddt = datetime.now()
                 new_file.save()
         else:
+            logger.debug("No new file convert")
             break
 
 
 def _conerter_dts_to_ac(ffmpeg_console, file_path: Path, save_path: Path):
+    logger.info("Start convert file = {}", file_path)
     ffmpeg_console.convert_mkv_dts_to_as(file_path, save_path)

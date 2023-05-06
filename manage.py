@@ -2,7 +2,7 @@ import click
 
 from src.settings import SCANN_PATH, SAVE_PATH
 from src.app.scanner import run_scan_files
-from src.app.demon import run_demon_job
+from src.app.daemon import run_daemon_job
 from src.app.copying import run_copy_cache_db
 from src.app.converter import run_convert_cache_db
 from src.app.ffmpeg_control import FFMPEGСonsole
@@ -20,9 +20,9 @@ def init() -> None:
 
 
 @cli.command
-def run_demon():
+def run_daemon():
     if init_start_job():
-        run_demon_job()
+        run_daemon_job()
 
 
 @cli.command

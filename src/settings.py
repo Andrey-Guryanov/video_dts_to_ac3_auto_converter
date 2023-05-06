@@ -6,7 +6,7 @@ WORK_DIR = Path.cwd()
 DB_CACHE_NAME: Final[str] = "file_cache.db"
 CONFIG: Final[dict] = read_yaml(WORK_DIR / "config.yaml")
 DB_CACHE_DIR: Final[Path] = WORK_DIR / "src" / "db_cache"
-
+LOG_DIR: Final[Path] = WORK_DIR / "src" / "logs" / "log.log"
 
 if CONFIG:
     SAVE_PATH: Final[Path] = Path(CONFIG["save_path"])
@@ -19,4 +19,7 @@ else:
     SAVE_STRUCT = None
     COPY_ALL = None
 
-DEMON_INTERVAL: Final[int] = 60
+DAEMON_INTERVAL: Final[int] = 60
+
+LOG_LEVEL: Final[str] = "DEBUG"
+LOG_ROTATION: Final[int] = 1

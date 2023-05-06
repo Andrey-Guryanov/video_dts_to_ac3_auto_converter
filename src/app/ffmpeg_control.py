@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from src.app.utilities.log import logger
 from src.app.utilities.command import console_execute, ErrorComandConsole
 
 
@@ -54,6 +55,7 @@ class FFMPEGСonsole(object):
         ]
         try:
             console_execute(console_args, True)
+            logger.info("End convert file, save = {}", console_save_path)
         except ErrorComandConsole as erorrs:
             print("Ошибка выполнения команды в консоле")
             raise erorrs

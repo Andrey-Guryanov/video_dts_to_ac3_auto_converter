@@ -3,6 +3,7 @@ import mimetypes
 from pathlib import Path
 
 from src.model import DB_MANAGER
+from src.app.utilities.log import logger
 from src.app.utilities.hash import create_path_hash
 from src.app.utilities.free_file import check_free_file
 
@@ -10,6 +11,7 @@ from .ffmpeg_control import FFMPEGСonsole
 
 
 def run_scan_files(dir_path: Path, ffmpeg_console: FFMPEGСonsole) -> None:
+    logger.debug("Run scan new files - {}", dir_path)
     scan_files = os.walk(dir_path, topdown=True, onerror=None, followlinks=False)
     for path_root, _, files in scan_files:
         for file_name in files:
