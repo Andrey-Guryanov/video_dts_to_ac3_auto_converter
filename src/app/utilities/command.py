@@ -32,6 +32,7 @@ def console_execute(console_args: List, result_return=False) -> ConsoleResult:
         raise ErrorComandConsole
     console_data = ConsoleResult(success=True)
     if result_return:
+        logger.debug("Console result = {}", consose_result)
         console_data.result = consose_result
     return console_data
 

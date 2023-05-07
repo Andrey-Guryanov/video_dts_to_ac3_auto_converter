@@ -16,9 +16,9 @@ def run_scan_files(dir_path: Path, ffmpeg_console: FFMPEGСonsole) -> None:
     for path_root, _, files in scan_files:
         for file_name in files:
             file_path = Path(f"{path_root}/{file_name}")
-            if check_video(file_path):
+            file_hash = create_path_hash(file_path)
+            if check_video(file_path) and not DB_MANAGER.check_file(file_hash):
                 if check_free_file(file_path):
-                    file_hash = create_path_hash(file_path)
                     if file_name[-4:] == ".mkv" and check_convert(
                         file_path, ffmpeg_console
                     ):
