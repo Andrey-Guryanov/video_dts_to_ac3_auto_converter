@@ -24,7 +24,15 @@ def run_convert_cache_db(save_path_dir: Path, ffmpeg_console: FFMPEGСonsole):
                     if SAVE_STRUCT:
                         save_path = crete_dir_structure(SCANN_PATH, file_path, SAVE_PATH)
                         save_path = save_path / new_file.file_name
-                _conerter_dts_to_ac(ffmpeg_console, file_path, save_path)
+                if os.path.isfile(save_path):
+                    if ffmpeg_console.check_dts_codec(save_path):
+                        os.remove(save_path)
+                        logger.info("Del file = {}", save_path)
+                        _conerter_dts_to_ac(ffmpeg_console, file_path, save_path)
+                    else:
+                        logger.info("File conversion is not needed. File = {}", save_path)
+                else:
+                    _conerter_dts_to_ac(ffmpeg_console, file_path, save_path)
                 if file_replace:
                     os.remove(file_path)
                     os.rename(save_path, str(save_path_dir / new_file.file_name))
@@ -40,3 +48,4 @@ def run_convert_cache_db(save_path_dir: Path, ffmpeg_console: FFMPEGСonsole):
 def _conerter_dts_to_ac(ffmpeg_console, file_path: Path, save_path: Path):
     logger.info("Start convert file = {}", file_path)
     ffmpeg_console.convert_mkv_dts_to_as(file_path, save_path)
+
